@@ -1,2 +1,2 @@
 # linkease
-A Flask-based URL shortener using Python and MySQL for url shortening
+A URL shortener using MERN stack
