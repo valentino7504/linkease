@@ -131,3 +131,4 @@ dist
 requests
 frontend/dist
 .vscode
+eslint*
