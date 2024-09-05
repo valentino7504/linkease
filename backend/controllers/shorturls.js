@@ -6,10 +6,10 @@ shorturlRouter.get('/', (req, res) => {
     .then(shorturls => res.json(shorturls));
 });
 
-shorturlRouter.get('/:id', (req, res, next) => {
-  const id = req.params.id;
+shorturlRouter.get('/:shortId', (req, res, next) => {
+  const id = req.params.shortId;
 
-  ShortUrl.findById(id)
+  ShortUrl.findOne({ shortId: id })
     .then(shorturl => res.json(shorturl))
     .catch(err => next(err));
 });
