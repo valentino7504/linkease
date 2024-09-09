@@ -17,12 +17,20 @@ shorturlRouter.get('/:shortId', (req, res, next) => {
 shorturlRouter.post('/', (req, res, next) => {
   const body = req.body;
 
-  const shortUrl = new ShortUrl({
-    fullUrl: body.fullUrl,
-    shortId: body.shortId
-  });
-  shortUrl.save()
-    .then(url => res.json(url))
+  ShortUrl.findOne({ fullUrl: body.fullUrl })
+    .then(shorturl => {
+      if (shorturl)
+        return res.json(shorturl);
+      else {
+        const shortUrl = new ShortUrl({
+          fullUrl: body.fullUrl,
+          shortId: body.shortId
+        });
+        shortUrl.save()
+          .then(shorturl => res.json(shorturl))
+          .catch(err => next(err));
+      }
+    })
     .catch(err => next(err));
 });
 
