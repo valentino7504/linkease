@@ -6,6 +6,7 @@ const logger = require('./utils/logger');
 const shorturlRouter = require('./controllers/shorturls');
 const ShortUrl = require('./models/shorturl');
 const statsRouter = require('./controllers/stats');
+const path = require('path');
 
 const app = express();
 
@@ -20,7 +21,7 @@ process.on('SIGTERM', shutdown);
 
 app.use(cors());
 app.use(express.json());
-app.use('/', express.static('./dist'));
+app.use('/', express.static(path.join(__dirname, 'dist')));
 app.use(middleware.requestLogger);
 app.use('/api/v1/shorturls', shorturlRouter);
 app.use('/api/v1/stats', statsRouter);
