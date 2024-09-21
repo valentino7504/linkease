@@ -5,6 +5,7 @@ const { openConnection, closeConnection } = require('./utils/dbManager');
 const logger = require('./utils/logger');
 const shorturlRouter = require('./controllers/shorturls');
 const ShortUrl = require('./models/shorturl');
+const statsRouter = require('./controllers/stats');
 
 const app = express();
 
@@ -19,18 +20,19 @@ process.on('SIGTERM', shutdown);
 
 app.use(cors());
 app.use(express.json());
-// app.use('/', express.static('../frontend/dist'));
+app.use('/', express.static('./dist'));
 app.use(middleware.requestLogger);
 
 app.get('/', (req, res) => res.send('Welcome to LinkEase'));
 app.use('/api/v1/shorturls', shorturlRouter);
+app.use('/api/v1/stats', statsRouter);
 app.get('/:shortId', (req, res, next) => {
   const shortId = req.params.shortId;
 
   ShortUrl.findOne({ shortId: shortId })
     .then(shorturl => {
       if (!shorturl)
-        return res.status(404).json({ error: 'unknown endpoint' });
+        return next();
       shorturl.clicks++;
       shorturl.save();
       res.redirect(302, shorturl.fullUrl);
