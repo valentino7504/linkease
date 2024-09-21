@@ -46,9 +46,11 @@ const Home = () => {
   const customUrlCheck = () => {
     const re = /^[a-zA-Z0-9]+$/;
     const error = validateUrl(formatUrl(customUrl), re);
-    if (error)
+    if (error) {
       setCustomUrlError('Custom URL can only contain letters and numbers. ' +
         'No spaces or special characters are allowed.');
+      setDisplayUrl(null);
+    }
     else
       setCustomUrlError(null);
   };
@@ -74,6 +76,7 @@ const Home = () => {
       .catch(async err => {
         const prevError = fullUrlError;
         setFullUrlError(err.toString());
+        setDisplayUrl(null);
         setTimeout(() => setFullUrlError(prevError), 3000);
       });
   };
