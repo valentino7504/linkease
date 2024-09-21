@@ -132,3 +132,5 @@ requests
 frontend/dist
 .vscode
 eslint*
+.env.production
+**/dist
