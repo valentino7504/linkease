@@ -75,8 +75,8 @@ const Home = () => {
       })
       .catch(async err => {
         const prevError = fullUrlError;
-        setFullUrlError(err.toString());
         setDisplayUrl(null);
+        setFullUrlError(err.toString());
         setTimeout(() => setFullUrlError(prevError), 3000);
       });
   };
