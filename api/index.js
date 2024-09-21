@@ -1,5 +1,5 @@
 const { createServer } = require('http');
-const app = require('../app'); // Adjust this path to your app.js
+const app = require('../backend/app');
 const server = createServer(app);
 
 module.exports = (req, res) => {
