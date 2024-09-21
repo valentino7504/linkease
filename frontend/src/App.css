@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'SUSE', sans-serif;
+    font-weight: normal;
+}
+
+.logo {
+    font-family: 'Reddit Sans Condensed', sans-serif;
+    font-size: 30px;
+}
+
+.tap-nav {
+    background-color: theme('colors.pri');
+    color: black;
+    font-weight: 600;
+}
+
+.active-nav {
+    border: 3px solid theme('colors.pri');
+}
+
+.inactive-nav {
+    border: 3px solid transparent;
+}
+
+.tap-btn {
+    background-color: black;
+    color: white;
+}
