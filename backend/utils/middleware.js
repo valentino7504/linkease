@@ -20,7 +20,7 @@ const requestLogger = (req, res, next) => {
 };
 
 const unknownEndpoint = (req, res) =>
-  res.sendFile(path.resolve('./dist/index.html'));
+  res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
 
 const errorHandler = (error, req, res, next) => {
   logger.error(error.message);
