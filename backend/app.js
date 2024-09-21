@@ -22,8 +22,6 @@ app.use(cors());
 app.use(express.json());
 app.use('/', express.static('./dist'));
 app.use(middleware.requestLogger);
-
-app.get('/', (req, res) => res.send('Welcome to LinkEase'));
 app.use('/api/v1/shorturls', shorturlRouter);
 app.use('/api/v1/stats', statsRouter);
 app.get('/:shortId', (req, res, next) => {
