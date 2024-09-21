@@ -25,7 +25,9 @@ const urlSchema = new mongoose.Schema({
     type: String,
     required: true,
     default: urlGen(),
-    unique: true
+    unique: true,
+    match: /^[a-zA-Z0-9]+$/,
+    trim: true
   },
   clicks: {
     type: Number,
